@@ -21,6 +21,7 @@ var GameLayer = cc.Layer.extend({
     _isBackSkyReload:false,
     _isBackTileReload:false,
     lbScore:null,
+	lbBomb:null,
     screenRect:null,
     explosionAnimation:[],
     _beginPos:cc.p(0, 0),
@@ -38,6 +39,7 @@ var GameLayer = cc.Layer.extend({
             MW.CONTAINER.PLAYER_BULLETS = [];
             MW.SCORE = 0;
             MW.LIFE = 4;
+			MW.BOMB = 5;
             this._state = STATE_PLAYING;
 
             Explosion.sharedExplosion();
@@ -69,6 +71,12 @@ var GameLayer = cc.Layer.extend({
             // ship
             this._ship = new Ship();
             this.addChild(this._ship, this._ship.zOrder, MW.UNIT_TAG.PLAYER);
+
+			// Bomb count 
+			this.lbBomb = cc.LabelTTF.create("Bomb: 0", "Arial", 14, cc.SizeMake(80, 14), cc.TEXT_ALIGNMENT_LEFT);
+			this.lbBomb.setAnchorPoint(cc.p(1, 0));
+			this.addChild(this.lbBomb, 1000);
+			this.lbBomb.setPosition(cc.p(winSize.width - 5, winSize.height-40));
 
             // accept touch now!
 
@@ -231,6 +239,7 @@ var GameLayer = cc.Layer.extend({
         }
         this._lbLife.setString(MW.LIFE);
         this.lbScore.setString("Score: " + this._tmpScore);
+		this.lbBomb.setString("Bomb: " + MW.BOMB);
     },
     collide:function (a, b) {
         var aRect = a.collideRect();

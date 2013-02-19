@@ -10,7 +10,8 @@ if( cc.config.deviceType == 'browser') {
 //image
 var s_bg01 = dirImg + "bg01.jpg";
 var s_b01 = dirImg + "b01.png";
-var s_loading = dirImg + "loading.png";
+//var s_loading = dirImg + "loading.png";
+var s_loading = dirImg + "hd-space-and-sky-wallpapers-24-5.jpg";
 var s_ship01 = dirImg + "ship01.png";
 var s_menu = dirImg + "menu.png";
 var s_logo = dirImg + "logo.png";

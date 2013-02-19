@@ -45,6 +45,7 @@ var MW = MW || {};
             'MoonWarriors/src/config/Level.js',
             'MoonWarriors/src/Effect.js',
             'MoonWarriors/src/Bullet.js',
+            'MoonWarriors/src/Bomb.js',
             'MoonWarriors/src/Enemy.js',
             'MoonWarriors/src/Explosion.js',
             'MoonWarriors/src/Ship.js',

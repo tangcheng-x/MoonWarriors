@@ -1,6 +1,7 @@
 var Ship = cc.Sprite.extend({
     speed:220,
     bulletSpeed:900,
+	bombSpeed:450,
     HP:5,
     bulletTypeValue:1,
     bulletPowerValue:1,
@@ -101,6 +102,11 @@ var Ship = cc.Sprite.extend({
         MW.CONTAINER.PLAYER_BULLETS.push(b);
         this.getParent().addChild(b, b.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
         b.setPosition(cc.p(p.x - offset, p.y + 3 + cs.height * 0.3));
+		
+		var c = new Bomb(this.bombSpeed, "W2.png", MW.ENEMY_MOVE_TYPE.NORMAL);
+		MW.CONTAINER.PLAYER_BULLETS.push(c);
+		this.getParent().addChild(c, c.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
+		c.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
     },
     destroy:function () {
         MW.LIFE--;

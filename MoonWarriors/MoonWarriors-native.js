@@ -37,6 +37,7 @@ var appFiles = [
 	'Level.js',
 	'Effect.js',
 	'Bullet.js',
+	'Bomb.js',
 	'Enemy.js',
 	'Explosion.js',
 	'Ship.js',
