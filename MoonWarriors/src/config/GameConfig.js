@@ -39,7 +39,7 @@ MW.LIFE = 4;
 MW.SCORE = 0;
 
 //Bomb
-MW.BOMB = 5;
+MW.BOMB = 20;
 
 //sound
 MW.SOUND = true;
