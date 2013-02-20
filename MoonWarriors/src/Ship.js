@@ -1,7 +1,7 @@
 var Ship = cc.Sprite.extend({
     speed:220,
     bulletSpeed:900,
-	bombSpeed:450,
+	bombSpeed:500,
     HP:5,
     bulletTypeValue:1,
     bulletPowerValue:1,
@@ -54,6 +54,21 @@ var Ship = cc.Sprite.extend({
         });
         this.runAction(cc.Sequence.create(cc.DelayTime.create(0.5), blinks, makeBeAttack));
     },
+    
+    shootBomb:function() {
+	   if (MW.BOMB > 0) {
+		 var offset = 13;
+         var p = this.getPosition();
+         var cs = this.getContentSize();
+		 var a = new Bomb(this.bombSpeed, "W2.png", MW.ENEMY_MOVE_TYPE.NORMAL);
+		 MW.CONTAINER.PLAYER_BULLETS.push(a);
+		 this.getParent().addChild(a, a.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
+		 a.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
+		 console.log("Using bomb");
+		 MW.BOMB--;
+	   }
+	},
+    
     update:function (dt) {
 
         // Keys are only enabled on the browser
@@ -71,6 +86,10 @@ var Ship = cc.Sprite.extend({
             if ((MW.KEYS[cc.KEY.d] || MW.KEYS[cc.KEY.right]) && pos.x <= winSize.width) {
                 pos.x += dt * this.speed;
             }
+            if((MW.KEYS[cc.KEY.b])) {
+			    this.shootBomb();
+				MW.KEYS[cc.KEY.b] = false;
+			}
             this.setPosition( pos );
         }
 
@@ -102,14 +121,20 @@ var Ship = cc.Sprite.extend({
         MW.CONTAINER.PLAYER_BULLETS.push(b);
         this.getParent().addChild(b, b.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
         b.setPosition(cc.p(p.x - offset, p.y + 3 + cs.height * 0.3));
-		
-		var c = new Bomb(this.bombSpeed, "W2.png", MW.ENEMY_MOVE_TYPE.NORMAL);
-		MW.CONTAINER.PLAYER_BULLETS.push(c);
-		this.getParent().addChild(c, c.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
-		c.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
+		/*
+		if (MW.BOMB > 0) {
+		  var c = new Bomb(this.bombSpeed, "W2.png", MW.ENEMY_MOVE_TYPE.NORMAL);
+		  MW.CONTAINER.PLAYER_BULLETS.push(c);
+		  this.getParent().addChild(c, c.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
+		  c.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
+		  MW.BOMB--;
+		}*/
     },
+
+
     destroy:function () {
         MW.LIFE--;
+		MW.BOMB = 20;
         var p = this.getPosition();
         var myParent = this.getParent();
         myParent.addChild( new Explosion(p) );

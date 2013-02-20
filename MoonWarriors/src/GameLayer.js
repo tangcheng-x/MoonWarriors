@@ -39,7 +39,7 @@ var GameLayer = cc.Layer.extend({
             MW.CONTAINER.PLAYER_BULLETS = [];
             MW.SCORE = 0;
             MW.LIFE = 4;
-			MW.BOMB = 5;
+			MW.BOMB = 20;
             this._state = STATE_PLAYING;
 
             Explosion.sharedExplosion();
@@ -119,7 +119,10 @@ var GameLayer = cc.Layer.extend({
     },
     onTouchesMoved:function (touches, event) {
         if(this._isTouch){
+		  if(touches.length = 1)
             this.processEvent(touches[0]);
+		  else
+            this.shootBomb();
         }
     },
     onTouchesEnded:function(touches, event){
@@ -141,8 +144,13 @@ var GameLayer = cc.Layer.extend({
         }
     },
 
+    shootBomb:function() {
+
+	},
+
     onKeyDown:function (e) {
-        MW.KEYS[e] = true;
+	   // if(MW.KEYS[cc.KEY.b] == false || e != cc.KEY.b)  
+           MW.KEYS[e] = true;
     },
 
     onKeyUp:function (e) {
