@@ -122,7 +122,11 @@ var GameLayer = cc.Layer.extend({
 		  if(touches.length = 1)
             this.processEvent(touches[0]);
 		  else
+<<<<<<< HEAD
             this._ship.shootBoom();
+=======
+            this.shootBomb();
+>>>>>>> 94b09ecbde1714c50f1400626fbe7b6f35f74cf0
         }
     },
     onTouchesEnded:function(touches, event){
@@ -143,6 +147,10 @@ var GameLayer = cc.Layer.extend({
             this._ship.setPosition( curPos );
         }
     },
+
+    shootBomb:function() {
+
+	},
 
     onKeyDown:function (e) {
 	   // if(MW.KEYS[cc.KEY.b] == false || e != cc.KEY.b)  
