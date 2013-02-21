@@ -57,11 +57,12 @@ var Ship = cc.Sprite.extend({
     
     shootBomb:function() {
 	   if (MW.BOMB > 0) {
-	   	var offset = 13;
+	   	    var offset = 13;
            	var p = this.getPosition();
            	var cs = this.getContentSize();
-	   	var a = new Bomb(this.bombSpeed, "explode1.png", MW.ENEMY_MOVE_TYPE.NORMAL);
-	   	MW.CONTAINER.PLAYER_BULLETS.push(a);
+	   	    var a = new Bomb(this.bombSpeed, "explode1.png", MW.ENEMY_MOVE_TYPE.NORMAL);
+	   	    //MW.CONTAINER.PLAYER_BULLETS.push(a);
+			MW.CONTAINER.PLAYER_BOMBS.push(a);
            	this.getParent().addChild(a, a.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
            	a.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
            	console.log("Using bomb");

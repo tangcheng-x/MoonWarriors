@@ -36,8 +36,9 @@ var Bomb = cc.Sprite.extend({
         explode.setScale(0.75);
         this.getParent().addChild(explode,9999);
         cc.ArrayRemoveObject(MW.CONTAINER.ENEMY_BULLETS,this);
-        cc.ArrayRemoveObject(MW.CONTAINER.PLAYER_BULLETS,this);
-        this.removeFromParentAndCleanup(true);
+        //cc.ArrayRemoveObject(MW.CONTAINER.PLAYER_BULLETS,this);
+        cc.ArrayRemoveObject(MW.CONTAINER.PLAYER_BOMBS, this);
+		this.removeFromParentAndCleanup(true);
         var removeExplode = cc.CallFunc.create(explode,explode.removeFromParentAndCleanup);
         explode.runAction(cc.ScaleBy.create(0.3, 2,2));
         explode.runAction(cc.Sequence.create(cc.FadeOut.create(0.3), removeExplode));
@@ -47,6 +48,6 @@ var Bomb = cc.Sprite.extend({
     },
     collideRect:function(){
         var p = this.getPosition();
-        return cc.rect(p.x - 3, p.y - 3, 6, 6);
+        return cc.rect(p.x - 5, p.y - 5, 10, 10);
     }
 });

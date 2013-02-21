@@ -37,6 +37,7 @@ var GameLayer = cc.Layer.extend({
             MW.CONTAINER.ENEMIES = [];
             MW.CONTAINER.ENEMY_BULLETS = [];
             MW.CONTAINER.PLAYER_BULLETS = [];
+			MW.CONTAINER.PLAYER_BOMBS = [];
             MW.SCORE = 0;
             MW.LIFE = 4;
 	    MW.BOMB = 20;
@@ -184,6 +185,17 @@ var GameLayer = cc.Layer.extend({
                     bulletChild.destroy();
                 }
             }
+			for (var k = 0; k < MW.CONTAINER.PLAYER_BOMBS.length; k++ ) {
+                bombChild = MW.CONTAINER.PLAYER_BOMBS[k];
+				if(this.collide(selChild, bombChild)) {
+				  bombChild.hurt();
+				  selChild.destroy();
+				}
+				if(!cc.rectIntersectsRect(this.screenRect, bombChild.getBoundingBox() )) {
+				  bombChild.destroy();
+				}
+			}
+
             if (this.collide(selChild, this._ship)) {
                 if (this._ship.active) {
                     selChild.hurt();
