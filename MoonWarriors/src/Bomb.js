@@ -15,7 +15,7 @@ var Bomb = cc.Sprite.extend({
 
         this.yVelocity = -bombSpeed;
         this.attackMode = attackMode;
-        cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bullet_plist);
+        cc.SpriteFrameCache.getInstance().addSpriteFrames(s_bomb_plist);
         this.initWithSpriteFrameName(weaponType);
         this.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
     },

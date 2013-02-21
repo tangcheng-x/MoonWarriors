@@ -21,7 +21,7 @@ var GameLayer = cc.Layer.extend({
     _isBackSkyReload:false,
     _isBackTileReload:false,
     lbScore:null,
-	lbBomb:null,
+    lbBomb:null,
     screenRect:null,
     explosionAnimation:[],
     _beginPos:cc.p(0, 0),
@@ -39,7 +39,7 @@ var GameLayer = cc.Layer.extend({
             MW.CONTAINER.PLAYER_BULLETS = [];
             MW.SCORE = 0;
             MW.LIFE = 4;
-			MW.BOMB = 20;
+	    MW.BOMB = 20;
             this._state = STATE_PLAYING;
 
             Explosion.sharedExplosion();
@@ -72,11 +72,11 @@ var GameLayer = cc.Layer.extend({
             this._ship = new Ship();
             this.addChild(this._ship, this._ship.zOrder, MW.UNIT_TAG.PLAYER);
 
-			// Bomb count 
-			this.lbBomb = cc.LabelTTF.create("Bomb: 0", "Arial", 14, cc.SizeMake(80, 14), cc.TEXT_ALIGNMENT_LEFT);
-			this.lbBomb.setAnchorPoint(cc.p(1, 0));
-			this.addChild(this.lbBomb, 1000);
-			this.lbBomb.setPosition(cc.p(winSize.width - 5, winSize.height-40));
+            // Bomb count 
+	    this.lbBomb = cc.LabelTTF.create("Bomb: 0", "Arial", 14, cc.SizeMake(80, 14), cc.TEXT_ALIGNMENT_LEFT);
+	    this.lbBomb.setAnchorPoint(cc.p(1, 0));
+	    this.addChild(this.lbBomb, 1000);
+	    this.lbBomb.setPosition(cc.p(winSize.width - 5, winSize.height-40));
 
             // accept touch now!
 
@@ -116,17 +116,13 @@ var GameLayer = cc.Layer.extend({
     },
     onTouchesBegan:function(touches, event){
         this._isTouch = true;
+	console.log(touches.length);
+	if(touches.length == 2)
+	   this._ship.shootBomb();
     },
     onTouchesMoved:function (touches, event) {
-        if(this._isTouch){
-		  if(touches.length = 1)
-            this.processEvent(touches[0]);
-		  else
-<<<<<<< HEAD
-            this._ship.shootBoom();
-=======
-            this.shootBomb();
->>>>>>> 94b09ecbde1714c50f1400626fbe7b6f35f74cf0
+        if(this._isTouch && touches.length == 1){
+              this.processEvent(touches[0]);
         }
     },
     onTouchesEnded:function(touches, event){

@@ -28,6 +28,7 @@ var s_explode3 = dirImg + "explode3.jpg";
 var s_hit = dirImg + "hit.jpg";
 var s_arial14 = dirImg + "arial-14.png";
 var s_arial14_fnt = dirImg + "arial-14.fnt";
+var s_bomb = dirImg + "bomb.png";
 
 //music
 var s_bgMusic = dirMusic + "bgMusic" + musicSuffix;
@@ -46,6 +47,7 @@ var s_level01 = dirImg + "level01.tmx";
 var s_Enemy_plist = dirImg + "Enemy.plist";
 var s_explosion_plist = dirImg + "explosion.plist";
 var s_bullet_plist = dirImg + "bullet.plist";
+var s_bomb_plist = dirImg + "bomb.plist";
 
 var g_ressources = [
     //image
@@ -61,6 +63,7 @@ var g_ressources = [
     {type:"image", src:s_Enemy},
     {type:"image", src:s_flare},
     {type:"image", src:s_bullet},
+    {type:"image", src:s_bomb},
     {type:"image", src:s_explosion},
     {type:"image", src:s_explode1},
     {type:"image", src:s_explode2},
@@ -75,6 +78,7 @@ var g_ressources = [
     {type:"plist", src:s_Enemy_plist},
     {type:"plist", src:s_explosion_plist},
     {type:"plist", src:s_bullet_plist},
+    {type:"plist", src:s_bomb_plist},
 
     //music
     {type:"bgm", src:s_bgMusic},

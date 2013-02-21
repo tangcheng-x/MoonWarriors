@@ -1,11 +1,7 @@
 var Ship = cc.Sprite.extend({
     speed:220,
     bulletSpeed:900,
-<<<<<<< HEAD
-	bombSpeed:50,
-=======
-	bombSpeed:500,
->>>>>>> 94b09ecbde1714c50f1400626fbe7b6f35f74cf0
+    bombSpeed:500,
     HP:5,
     bulletTypeValue:1,
     bulletPowerValue:1,
@@ -61,19 +57,19 @@ var Ship = cc.Sprite.extend({
     
     shootBomb:function() {
 	   if (MW.BOMB > 0) {
-		 var offset = 13;
-         var p = this.getPosition();
-         var cs = this.getContentSize();
-		 var a = new Bomb(this.bombSpeed, "W2.png", MW.ENEMY_MOVE_TYPE.NORMAL);
-		 MW.CONTAINER.PLAYER_BULLETS.push(a);
-		 this.getParent().addChild(a, a.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
-		 a.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
-		 console.log("Using bomb");
-		 MW.BOMB--;
+	   	var offset = 13;
+           	var p = this.getPosition();
+           	var cs = this.getContentSize();
+	   	var a = new Bomb(this.bombSpeed, "explode1.png", MW.ENEMY_MOVE_TYPE.NORMAL);
+	   	MW.CONTAINER.PLAYER_BULLETS.push(a);
+           	this.getParent().addChild(a, a.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
+           	a.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
+           	console.log("Using bomb");
+           	MW.BOMB--;
 	   }
 	},
-    
-    update:function (dt) {
+
+	update:function (dt) {
 
         // Keys are only enabled on the browser
         if( cc.config.deviceType == 'browser' ) {
@@ -91,9 +87,9 @@ var Ship = cc.Sprite.extend({
                 pos.x += dt * this.speed;
             }
             if((MW.KEYS[cc.KEY.b])) {
-			    this.shootBomb();
-				MW.KEYS[cc.KEY.b] = false;
-			}
+	    	this.shootBomb();
+		MW.KEYS[cc.KEY.b] = false;
+	    }
             this.setPosition( pos );
         }
 
@@ -125,20 +121,12 @@ var Ship = cc.Sprite.extend({
         MW.CONTAINER.PLAYER_BULLETS.push(b);
         this.getParent().addChild(b, b.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
         b.setPosition(cc.p(p.x - offset, p.y + 3 + cs.height * 0.3));
-		/*
-		if (MW.BOMB > 0) {
-		  var c = new Bomb(this.bombSpeed, "W2.png", MW.ENEMY_MOVE_TYPE.NORMAL);
-		  MW.CONTAINER.PLAYER_BULLETS.push(c);
-		  this.getParent().addChild(c, c.zOrder, MW.UNIT_TAG.PLAYER_BULLET);
-		  c.setPosition(cc.p(p.x, p.y + 3 + cs.height * 0.3));
-		  MW.BOMB--;
-		}*/
     },
 
 
     destroy:function () {
         MW.LIFE--;
-		MW.BOMB = 20;
+	MW.BOMB = 20;
         var p = this.getPosition();
         var myParent = this.getParent();
         myParent.addChild( new Explosion(p) );
