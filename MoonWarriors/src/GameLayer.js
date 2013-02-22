@@ -145,9 +145,6 @@ var GameLayer = cc.Layer.extend({
         }
     },
 
-    shootBomb:function() {
-
-	},
 
     onKeyDown:function (e) {
 	   // if(MW.KEYS[cc.KEY.b] == false || e != cc.KEY.b)  
@@ -166,8 +163,6 @@ var GameLayer = cc.Layer.extend({
             this.updateUI();
         }
 
-        //if( cc.config.deviceType == 'browser' )
-         //   cc.$("#cou").innerHTML = "Ship:" + 1 + ", Enemy: " + MW.CONTAINER.ENEMIES.length + ", Bullet:" + MW.CONTAINER.ENEMY_BULLETS.length + "," + MW.CONTAINER.PLAYER_BULLETS.length + " all:" + this.getChildren().length;
     },
     checkIsCollide:function () {
         var selChild, bulletChild;
@@ -180,21 +175,27 @@ var GameLayer = cc.Layer.extend({
                 if (this.collide(selChild, bulletChild)) {
                     bulletChild.hurt();
                     selChild.hurt();
+		    if(selChild.scoreValue == 200 && selChild.HP == 0)
+		      if(MW.BOMB < 20)
+		         MW.BOMB++;
+
                 }
                 if (!cc.rectIntersectsRect(this.screenRect, bulletChild.getBoundingBox() )) {
                     bulletChild.destroy();
                 }
             }
-			for (var k = 0; k < MW.CONTAINER.PLAYER_BOMBS.length; k++ ) {
-                bombChild = MW.CONTAINER.PLAYER_BOMBS[k];
-				if(this.collide(selChild, bombChild)) {
-				  bombChild.hurt();
-				  selChild.destroy();
-				}
-				if(!cc.rectIntersectsRect(this.screenRect, bombChild.getBoundingBox() )) {
-				  bombChild.destroy();
-				}
+		for (var k = 0; k < MW.CONTAINER.PLAYER_BOMBS.length; k++ ) {
+                	bombChild = MW.CONTAINER.PLAYER_BOMBS[k];
+			if(this.collide(selChild, bombChild)) {
+				bombChild.hurt();
+				selChild.destroy();
+				if(selChild.scoreValue == 200)
+					MW.BOMB++;
 			}
+			if(!cc.rectIntersectsRect(this.screenRect, bombChild.getBoundingBox() )) {
+				bombChild.destroy();
+			}
+		}
 
             if (this.collide(selChild, this._ship)) {
                 if (this._ship.active) {
